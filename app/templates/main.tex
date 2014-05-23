@@ -1,0 +1,54 @@
+%
+% <%= projectName %>
+% <%= projectUrl %>
+% Licensed under <%= license %> License
+%
+
+% Page creation engine
+\documentclass[11pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[<%= language %>]{babel}
+\usepackage[T1]{fontenc}
+
+% Meta-data
+\title{<%= projectName %>}
+\author{<%= authorName %>}
+\date{<% (new Date).getDate() %>}
+
+% Main modules
+\usepackage{url}      % URL
+\usepackage{hyperref} % Links
+\usepackage{graphicx} % Pictures
+\usepackage{wrapfig}  % In-line Pictures
+\usepackage{verbatim} % Code
+\usepackage{moreverb} % Encoding
+\usepackage{listings} % Code
+\usepackage{color}    % Highlight
+
+<% if (gloss) { %>
+% Glossary
+\usepackage[nomain,acronym,xindy,toc]{glossaries}
+\loadglsentries[main]{../src/glos}
+\makeglossaries
+\usepackage{makeidx}
+\makeindex
+<% } %>
+
+% Document
+\begin{document}
+
+\maketitle
+
+\input{src/1}
+<% if (bib) { %>
+% Bibliography
+\bibliographystyle{unsrt}
+\bibliography{../src/refs}
+<% } %><% if (gloss) { %>
+\printindex
+% Glossary
+\setglossarystyle{altlist}
+\printglossary
+<% } %>
+
+\end{document}

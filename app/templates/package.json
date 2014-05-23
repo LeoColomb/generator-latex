@@ -1,0 +1,12 @@
+{
+  "name": "<%= _.slugify(projectName) %>",
+  "description": "<%= projectDesc %>",
+  "version": "<%= version %>",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "*",
+    "grunt-latex": "*",
+    "grunt-contrib-connect": "*"
+  }
+}
