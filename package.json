@@ -7,8 +7,8 @@
   "repository": "LeoColomb/generator-latex",
   "author": {
     "name": "Léo Colombaro",
-    "email": "",
-    "url": "https://github.com/LeoColomb"
+    "email": "git@colombaro.fr",
+    "url": "http://colombaro.fr"
   },
   "engines": {
     "node": ">=0.10.0"

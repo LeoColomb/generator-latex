@@ -23,7 +23,7 @@ describe('latex generator', function () {
       'package.json',
       'main.tex',
       'src/1.tex',
-      'src/ref.bib',
+      'src/refs.bib',
       'Gruntfile.js',
       '.editorconfig'
     ];
