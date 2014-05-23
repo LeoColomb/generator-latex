@@ -1,6 +1,6 @@
 {
   "name": "generator-latex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "LaTeX Book Generator",
   "license": "MIT",
   "main": "app/index.js",
