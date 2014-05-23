@@ -1,7 +1,7 @@
 {
   "name": "generator-latex",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "0.0.1",
+  "description": "LaTeX Book Generator",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "LeoColomb/generator-latex",
