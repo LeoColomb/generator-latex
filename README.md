@@ -1,4 +1,6 @@
 # generator-latex [![Build Status](https://secure.travis-ci.org/LeoColomb/generator-latex.png?branch=master)](https://travis-ci.org/LeoColomb/generator-latex)
+[![Latest Release](http://img.shields.io/npm/v/generator-latex.svg)](https://github.com/LeoColomb/Arduino-SRF/releases)
+[![Build Status](https://travis-ci.org/LeoColomb/generator-latex.svg)](https://travis-ci.org/LeoColomb/generator-yourls-extension)
 
 > [Yeoman](http://yeoman.io) generator
 
