@@ -118,6 +118,9 @@ var LatexGenerator = yeoman.generators.Base.extend({
     if (this.bib) {
       this.template('src/refs.bib', 'src/refs.bib');
     }
+    if (this.gloss) {
+      this.template('src/glos.tex', 'src/glos.tex');
+    }
   },
 
   projectfiles: function () {
