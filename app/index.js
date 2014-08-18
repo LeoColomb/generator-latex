@@ -1,7 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
-var classes = [
+var docClasses = [
   'report', 'article', 'book', 'slides', 'beamer', 'lettre', 'memoir'
 ];
 var languages = [
@@ -77,10 +77,10 @@ var LatexGenerator = yeoman.generators.Base.extend({
     },
     {
       type: 'list',
-      choices: classes,
-      name: 'class',
+      choices: docClasses,
+      name: 'docClass',
       message: 'Choose your document class',
-      default: classes[0]
+      default: docClasses[0]
     },
     {
       type: 'list',
@@ -109,7 +109,7 @@ var LatexGenerator = yeoman.generators.Base.extend({
       this.projectUrl = props.projectUrl;
       this.license = props.license;
       this.authorName = props.authorName;
-      this.class = props.class;
+      this.docClass = props.docClass;
       this.language = props.language;
       this.bib = props.bib;
       this.gloss = props.gloss;
