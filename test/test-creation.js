@@ -30,9 +30,10 @@ describe('latex generator', function () {
 
     helpers.mockPrompt(this.app, {
       'name': 'Test LaTex',
+      'class': 'book',
       'language': 'french',
       'bib': true
-  });
+    });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
       helpers.assertFile(expected);

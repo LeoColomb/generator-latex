@@ -4,9 +4,9 @@
   "version": "<%= version %>",
   "private": true,
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "^0.4.2",
     "grunt-contrib-watch": "*",
-    "grunt-latex": "*",
-    "grunt-contrib-connect": "*"
+    "grunt-contrib-connect": "*",
+    "grunt-latex": "*"
   }
 }
