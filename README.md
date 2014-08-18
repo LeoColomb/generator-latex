@@ -1,32 +1,22 @@
+﻿![LaTeX](https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LaTeX_logo.svg/220px-LaTeX_logo.svg.png)
+
 Generator LaTeX
 ===============
-[![Latest Release](http://img.shields.io/npm/v/generator-latex.svg)](https://www.npmjs.org/package/generator-latex)
-[![Build Status](https://travis-ci.org/LeoColomb/generator-latex.svg)](https://travis-ci.org/LeoColomb/generator-yourls-extension)
-
-> [Yeoman](http://yeoman.io) generator
-
+[![Latest Release](https://img.shields.io/npm/v/generator-latex.svg?style=flat)](https://www.npmjs.org/package/generator-latex)
+[![Build Status](https://img.shields.io/travis/LeoColomb/generator-latex.svg?style=flat)](https://travis-ci.org/LeoColomb/generator-latex)
+[![Yeoman](https://img.shields.io/badge/generator-yeoman-5aadbb.svg?style=flat)](http://yeoman.io)
 
 ## Getting Started
 
 ### What is Yeoman?
 
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```bash
-$ npm install -g yo
-```
+Trick question. It's not a thing. It's this guy! Take a look at [yeoman.io](http://yeoman.io).
 
 ### Yeoman Generators
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-latex from npm, run:
+To install `generator-latex` from [npm](https://www.npmjs.org/), run:
 
 ```bash
 $ npm install -g generator-latex
@@ -38,13 +28,6 @@ Finally, initiate the generator:
 $ yo latex
 ```
 
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
-
 ## License
 
-MIT
+MIT © [Léo Colombaro](http://colombaro.fr)
