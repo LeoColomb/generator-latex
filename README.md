@@ -12,7 +12,60 @@ Generator LaTeX
 
 Trick question. It's not a thing. It's this guy! Take a look at [yeoman.io](http://yeoman.io).
 
-### Yeoman Generators
+### What will be created?
+
+#### Structure
+
+This generator will be perfect for every type of LaTeX document.
+It helps you to create a solid structure of your project.
+
+Take a look at this final structure:
+
+```
+│- .editorconfig
+│- Gruntfile.js        # The compilator launcher file
+│- main.tex            # The global file
+│- package.json
+│
+└── src
+    │- glos.tex        # The glossary file
+    │- refs.bib        # The reference file
+    │- ...
+    │
+    └── 1
+        │- main.tex    # First chapter global file
+        │- ...
+
+    └── 2
+        │- main.tex    # Second chapter global file
+        │- ...
+
+    └── ...
+
+└── dist
+    │- [PROJECT].pdf   # The final PDF file output
+    │- ...             # Some files used for compilation
+```
+
+#### Tools
+
+It import for you some tools, with their own features such as:
+* [Grunt](http://gruntjs.com/) engine, for easy tasks running and managing.
+* Complete and structured compilation command without opening terminal.
+* Automatic compilation at file changes.
+* Full and automatic PDF view in your browser.
+
+After generation, keeping your work up-to-date during your writting is easy:
+
+```bash
+$ grunt
+```
+
+That's it! :sparkles:
+
+## Generator Usage
+
+### Create the LaTeX project
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
@@ -30,21 +83,26 @@ $ yo latex
 
 ### Chapter Sub-Generator
 
-Adding a chapter is a repetitive task. To keep them organized, the Chapter Sub-Generator creates a chapters directory, and lets you create sub-directories for each chapter. For example:
+Adding a chapter is a repetitive task. To keep them organized, the Chapter Sub-Generator creates a chapters directory, and lets you create sub-directories for each chapter.
 
+To run it:
 ```bash
-$ yo latex:chapter 01 Introduction
+$ yo latex:chapter
 ```
 
-Will create the chapters/01 directory structure. Within chapters/01, it will create chapter.tex and a media/ folder. The title of this chapter will be Introduction.
+or directly to bypass questions:
 
-It also adds to main.tex, inserting an \include just before it sees % end chapters.
+```bash
+$ yo latex:chapter 1 Introduction
+```
 
-### Getting To Know Yeoman
+Will create `src/1/main.tex`.  
+The title of this chapter will be `Introduction`.
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+It also adds to `./main.tex`, inserting an `\include` just before it sees `% End of chapter files listing`.
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+## 
+
 
 ## License
 

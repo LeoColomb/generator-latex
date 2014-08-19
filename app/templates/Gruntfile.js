@@ -34,6 +34,8 @@ module.exports = function (grunt) {
       server: {
         options: {
           hostname: 'localhost',
+          base: 'dist',
+          open: 'http://localhost:8000/<%= projectName %>.pdf'
         }
       }
     },
