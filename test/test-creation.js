@@ -45,7 +45,7 @@ describe('creates a chapter', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../chapter'))
       .inDir(path.join(__dirname, './temp'), function (dir) {
-        fs.copySync(path.join(__dirname, '../app/templates'), dir)
+        fs.copySync(path.join(__dirname, '../app/templates'), dir);
       })
       .withPrompt({
         'chapterName': 'Test LaTex',
