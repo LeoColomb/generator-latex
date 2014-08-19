@@ -122,7 +122,6 @@ var LatexGenerator = yeoman.generators.Base.extend({
     this.mkdir('dist');
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('main.tex', 'main.tex');
-    this.template('src/1.tex', 'src/1.tex');
     if (this.bib) {
       this.template('src/refs.bib', 'src/refs.bib');
     }
@@ -134,6 +133,10 @@ var LatexGenerator = yeoman.generators.Base.extend({
   projectfiles: function () {
     this.template('package.json', 'package.json');
     this.copy('editorconfig', '.editorconfig');
+  },
+
+  createFirstChapter: function () {
+    this.invoke('latex:chapter', { args: [1, 'First Chapter'] });
   }
 });
 

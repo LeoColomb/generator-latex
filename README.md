@@ -28,6 +28,24 @@ Finally, initiate the generator:
 $ yo latex
 ```
 
+### Chapter Sub-Generator
+
+Adding a chapter is a repetitive task. To keep them organized, the Chapter Sub-Generator creates a chapters directory, and lets you create sub-directories for each chapter. For example:
+
+```bash
+$ yo latex:chapter 01 Introduction
+```
+
+Will create the chapters/01 directory structure. Within chapters/01, it will create chapter.tex and a media/ folder. The title of this chapter will be Introduction.
+
+It also adds to main.tex, inserting an \include just before it sees % end chapters.
+
+### Getting To Know Yeoman
+
+Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+
+If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+
 ## License
 
 MIT © [Léo Colombaro](http://colombaro.fr)
