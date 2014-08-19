@@ -19,11 +19,12 @@ var languages = [
   'usenglishmax', 'welsh'
 ];
 
-var LatexGenerator = yeoman.generators.Base.extend({
+module.exports = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
 
     this.on('end', function () {
+      this._createFirstChapter();
       if (!this.options['skip-install']) {
         this.npmInstall();
       }
@@ -135,9 +136,12 @@ var LatexGenerator = yeoman.generators.Base.extend({
     this.copy('editorconfig', '.editorconfig');
   },
 
-  createFirstChapter: function () {
-    this.invoke('latex:chapter', { args: [1, 'First Chapter'] });
+  _createFirstChapter: function () {
+    this.invoke('latex:chapter', {
+      options: {
+        chapterNum: '1',
+        chapterName: 'First Chapter'
+      }
+    });
   }
 });
-
-module.exports = LatexGenerator;

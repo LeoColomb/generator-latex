@@ -1,43 +1,40 @@
-/*global describe, beforeEach, it */
+/*global describe, before, it*/
 'use strict';
 var path = require('path');
 var helpers = require('yeoman-generator').test;
+var assert = require('yeoman-generator').assert;
 
-describe('latex generator', function () {
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = helpers.createGenerator('latex:app', [
-        '../../app'
-      ]);
-      done();
-    }.bind(this));
+describe('creates expected files', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(path.join(__dirname, './temp'))
+      .withOptions({ 'skip-install': true })
+      .withPrompt({
+        'name': 'Test LaTex',
+        'class': 'book',
+        'language': 'french',
+        'bib': true
+      })
+      .on('end', done);
   });
 
-  it('creates expected files', function (done) {
+  it('latex generator', function (done) {
     var expected = [
-      // add files you expect to exist here.
       'package.json',
       'main.tex',
-      'src/1/main.tex',
       'src/refs.bib',
       'Gruntfile.js',
       '.editorconfig'
     ];
+    assert.file(expected);
+    assert.noFile('src/glos.bib');
+    done();
+  });
 
-    helpers.mockPrompt(this.app, {
-      'name': 'Test LaTex',
-      'class': 'book',
-      'language': 'french',
-      'bib': true
-    });
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expected);
-      done();
-    });
+  it('latex:chapter generator', function (done) {
+    assert.file('src/1/main.tex');
+    assert.fileContent('main.tex', /\\input{src\/1\/main\.tex}/);
+    assert.fileContent('src/2/main.tex', /\\chapter{First Chapter}/);
+    done();
   });
 });

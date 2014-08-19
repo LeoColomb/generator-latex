@@ -1,24 +1,24 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 
-var ChapterGenerator = yeoman.generators.NamedBase.extend({
+module.exports = yeoman.generators.Base.extend({
+  init: function () {
+    if (this.options.chapterName) {
+      this.chapterName = this.options.chapterName;
+    } else if (arguments[1]) {
+      this.chapterName = arguments[1];
+    } else {
+      this._askFor();
+    }
+  },
+
   _askFor: function () {
     var done = this.async();
 
     var prompts = [{
       name: 'chapterNum',
       message: 'Chapter number',
-      default: 1,
-      validate: function (input) {
-        var done = this.async();
-        setTimeout(function () {
-          if (typeof input !== 'number') {
-            done('You need to provide a number');
-            return;
-          }
-          done(true);
-        }, 3000);
-      }
+      default: '1'
     },
     {
       name: 'chapterName',
@@ -34,17 +34,10 @@ var ChapterGenerator = yeoman.generators.NamedBase.extend({
     }.bind(this));
   },
 
-  init: function () {
-    if (!arguments[1]) {
-      this._askFor();
-    } else {
-      this.chapterName = arguments[1];
-    }
-    this.chapRoot = 'src/' + (this.chapterNum || arguments[0]);
+  content: function () {
+    this.chapRoot = 'src/' + (this.options.chapterNum || arguments[0] || this.chapterNum);
     this.chapFile = this.chapRoot + '/main.tex';
-  },
 
-  directories: function () {
     this.mkdir(this.chapRoot);
     this.copy('chapter.tex', this.chapFile);
   },
@@ -61,5 +54,3 @@ var ChapterGenerator = yeoman.generators.NamedBase.extend({
     this.writeFileFromString(file, path);
   }
 });
-
-module.exports = ChapterGenerator;
