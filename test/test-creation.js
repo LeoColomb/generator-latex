@@ -22,7 +22,7 @@ describe('latex generator', function () {
       // add files you expect to exist here.
       'package.json',
       'main.tex',
-      'src/chapters/1/chapter.tex',
+      'src/1/main.tex',
       'src/refs.bib',
       'Gruntfile.js',
       '.editorconfig'

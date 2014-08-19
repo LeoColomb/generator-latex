@@ -116,8 +116,6 @@ var LatexGenerator = yeoman.generators.Base.extend({
 
       done();
     }.bind(this));
-
-    
   },
 
   app: function () {
@@ -138,7 +136,7 @@ var LatexGenerator = yeoman.generators.Base.extend({
   },
 
   createFirstChapter: function () {
-    this.invoke("latex:chapter", {args:["1", "New Book"]});
+    this.invoke('latex:chapter', { args: [1, 'First Chapter'] });
   }
 });
 
