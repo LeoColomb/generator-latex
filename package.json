@@ -1,7 +1,7 @@
 {
   "name": "generator-latex",
   "version": "0.0.3",
-  "description": "LaTeX Book Generator",
+  "description": "Yeoman Generator for LaTeX up-to-date documents",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "LeoColomb/generator-latex",
@@ -23,9 +23,8 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.17.0",
-    "chalk": "~0.5.0",
-    "yosay": "~0.1.0"
+    "yeoman-generator": "^0.17.0",
+    "yosay": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "*"

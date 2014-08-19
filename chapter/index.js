@@ -5,38 +5,36 @@ var yeoman = require('yeoman-generator');
 
 var ChapterGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
-  	this.chapRoot = 'chapters/'+arguments[0];
-  	this.chapterName = arguments[1];
-
-    console.log('You called the chapter subgenerator with the argument ' + this.name + '.');
+    console.log('reading arguments');
+    this.chapRoot = 'src/chapters/' + arguments[0];
+    this.chapterName = arguments[1];
   },
 
   directories: function() {
-  	console.log('making directories');
-  	this.mkdir(this.chapRoot);
-  	this.mkdir(this.chapRoot+'/media');
-
+    console.log('making directories');
+    this.mkdir(this.chapRoot);
   },
 
   files: function () {
-  	console.log('making files');
-    this.copy('chapter.tex', this.chapRoot+'/chapter.tex');
+    console.log('making files');
+    console.log(this.chapterName);
+    this.copy('src/chapter.tex', this.chapRoot + '/chapter.tex');
   },
 
   fileIO: function() {
-  	console.log('editing files');
-
-  	var path = "main.tex",
+    console.log('editing files');
+    var path = "main.tex",
     file = this.readFileAsString(path);
 
-    var insertion = "\\input{"+this.chapRoot+"/chapter.tex}\n"
+    var insertion = "\\input{" + this.chapRoot + "/chapter.tex}\n"
 
     var index = file.indexOf("% end chapters");
 
     file = [file.slice(0, index), insertion, file.slice(index)].join('');
 
-
-	this.write(path, file);
+    // force a re-write of main.tex without requiring user input
+    this.conflicter.force = true;
+    this.write(path, file);
   }
 });
 

@@ -1,22 +1,22 @@
 'use strict';
-var util = require('util');
-var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
-var chalk = require('chalk');
-var language = [
-  "english", "afrikaans", "ancientgreek", "arabic", "armenian", "assamese",
-  "basque", "bengali", "bokmal", "bulgarian", "catalan", "coptic", "croatian",
-  "czech", "danish", "dutch", "esperanto", "estonian", "farsi", "finnish",
-  "french", "galician", "german", "german-x-2013-05-26", "greek", "gujarati",
-  "hindi", "hungarian", "icelandic", "indonesian", "interlingua", "irish",
-  "italian", "kannada", "kurmanji", "latin", "latvian", "lithuanian",
-  "malayalam", "marathi", "mongolian", "mongolianlmc", "monogreek", "ngerman",
-  "ngerman-x-2013-05-26", "nynorsk", "oriya", "panjabi", "pinyin", "polish",
-  "portuguese", "romanian", "russian", "sanskrit", "serbian", "slovak",
-  "slovenian", "spanish", "swedish", "swissgerman", "tamil", "telugu",
-  "turkish", "turkmen", "ukenglish", "ukrainian", "uppersorbian",
-  "usenglishmax", "welsh"
+var docClasses = [
+  'report', 'article', 'book', 'slides', 'beamer', 'lettre', 'memoir'
+];
+var languages = [
+  'english', 'afrikaans', 'ancientgreek', 'arabic', 'armenian', 'assamese',
+  'basque', 'bengali', 'bokmal', 'bulgarian', 'catalan', 'coptic', 'croatian',
+  'czech', 'danish', 'dutch', 'esperanto', 'estonian', 'farsi', 'finnish',
+  'french', 'galician', 'german', 'german-x-2013-05-26', 'greek', 'gujarati',
+  'hindi', 'hungarian', 'icelandic', 'indonesian', 'interlingua', 'irish',
+  'italian', 'kannada', 'kurmanji', 'latin', 'latvian', 'lithuanian',
+  'malayalam', 'marathi', 'mongolian', 'mongolianlmc', 'monogreek', 'ngerman',
+  'ngerman-x-2013-05-26', 'nynorsk', 'oriya', 'panjabi', 'pinyin', 'polish',
+  'portuguese', 'romanian', 'russian', 'sanskrit', 'serbian', 'slovak',
+  'slovenian', 'spanish', 'swedish', 'swissgerman', 'tamil', 'telugu',
+  'turkish', 'turkmen', 'ukenglish', 'ukrainian', 'uppersorbian',
+  'usenglishmax', 'welsh'
 ];
 
 var LatexGenerator = yeoman.generators.Base.extend({
@@ -42,7 +42,7 @@ var LatexGenerator = yeoman.generators.Base.extend({
       message: 'Project Name',
       default: extensionName,
       filter: function (input) {
-        return input.replace(/^yourls[\-_]?/, '').replace(/[\-_]?yourls$/, '');
+        return input.replace(/^latex[\-_]?/, '').replace(/[\-_]?latex/, '');
       }
     },
     {
@@ -77,10 +77,17 @@ var LatexGenerator = yeoman.generators.Base.extend({
     },
     {
       type: 'list',
-      choices: language,
+      choices: docClasses,
+      name: 'docClass',
+      message: 'Choose your document class',
+      default: docClasses[0]
+    },
+    {
+      type: 'list',
+      choices: languages,
       name: 'language',
       message: 'Choose your language for Babel',
-      default: 'english'
+      default: languages[0]
     },
     {
       type: 'confirm',
@@ -102,19 +109,21 @@ var LatexGenerator = yeoman.generators.Base.extend({
       this.projectUrl = props.projectUrl;
       this.license = props.license;
       this.authorName = props.authorName;
+      this.docClass = props.docClass;
       this.language = props.language;
       this.bib = props.bib;
       this.gloss = props.gloss;
 
       done();
     }.bind(this));
+
+    
   },
 
   app: function () {
     this.mkdir('dist');
     this.template('Gruntfile.js', 'Gruntfile.js');
     this.template('main.tex', 'main.tex');
-    this.template('src/1.tex', 'src/1.tex');
     if (this.bib) {
       this.template('src/refs.bib', 'src/refs.bib');
     }
@@ -126,6 +135,10 @@ var LatexGenerator = yeoman.generators.Base.extend({
   projectfiles: function () {
     this.template('package.json', 'package.json');
     this.copy('editorconfig', '.editorconfig');
+  },
+
+  createFirstChapter: function () {
+    this.invoke("latex:chapter", {args:["1", "New Book"]});
   }
 });
 
