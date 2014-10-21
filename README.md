@@ -63,6 +63,13 @@ $ grunt
 
 That's it! :sparkles:
 
+### Can I test compilation?
+
+Yes! The generator will create a compatible project for LaTeX CI builds,
+without any configuration.
+
+For CI Server, see for example [ShareLaTeX](https://www.sharelatex.com/github/).
+
 ## Generator Usage
 
 ### Create the LaTeX project
