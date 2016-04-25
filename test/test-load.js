@@ -1,6 +1,6 @@
 /*global describe, it*/
 'use strict';
-var assert = require('assert');
+var assert = require('yeoman-assert');
 
 describe('can be imported without blowing up', function () {
   it('latex generator', function () {

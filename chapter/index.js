@@ -1,7 +1,8 @@
 'use strict';
-var yeoman = require('yeoman-generator');
+var htmlWiring = require('html-wiring');
+var mkdirp = require('mkdirp');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = require('yeoman-generator').Base.extend({
   init: function () {
     if (this.options.chapterName) {
       this.chapterName = this.options.chapterName;
@@ -38,19 +39,19 @@ module.exports = yeoman.generators.Base.extend({
     this.chapRoot = 'src/' + (this.options.chapterNum || arguments[0] || this.chapterNum);
     this.chapFile = this.chapRoot + '/main.tex';
 
-    this.mkdir(this.chapRoot);
+    mkdirp(this.chapRoot);
     this.copy('chapter.tex', this.chapFile);
   },
 
   fileIO: function () {
     var path = 'main.tex',
-    file = this.readFileAsString(path);
+    file = htmlWiring.readFileAsString(path);
 
     var insertion = '\\input{' + this.chapFile + '}\n';
     var index = file.indexOf('% End of chapter files listing');
 
     file = [file.slice(0, index), insertion, file.slice(index)].join('');
 
-    this.writeFileFromString(file, path);
+    htmlWiring.writeFileFromString(file, path);
   }
 });

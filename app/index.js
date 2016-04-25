@@ -1,6 +1,6 @@
 'use strict';
-var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var mkdirp = require('mkdirp');
 var docClasses = [
   'report', 'article', 'book', 'slides', 'beamer', 'lettre', 'memoir'
 ];
@@ -19,7 +19,7 @@ var languages = [
   'usenglishmax', 'welsh'
 ];
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = require('yeoman-generator').Base.extend({
   init: function () {
     this.pkg = require('../package.json');
 
@@ -33,7 +33,7 @@ module.exports = yeoman.generators.Base.extend({
 
   askFor: function () {
     var done = this.async();
-    var extensionName = this._.slugify(this.appname);
+    var extensionName = require('lodash').kebabCase(this.appname);
 
     // Have Yeoman greet the user.
     this.log(yosay('Welcome to the marvelous Latex generator!'));
@@ -105,6 +105,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       this.projectName = props.projectName;
+      this.projectNameSlug = require('lodash').kebabCase(props.projectName);
       this.projectDesc = props.projectDesc;
       this.version = props.version;
       this.projectUrl = props.projectUrl;
@@ -120,24 +121,24 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdir('dist');
-    this.template('Gruntfile.js', 'Gruntfile.js');
-    this.template('main.tex', 'main.tex');
+    mkdirp('dist/');
+    this.copy('Gruntfile.js', 'Gruntfile.js');
+    this.copy('main.tex', 'main.tex');
     if (this.bib) {
-      this.template('src/refs.bib', 'src/refs.bib');
+      this.copy('src/refs.bib', 'src/refs.bib');
     }
     if (this.gloss) {
-      this.template('src/glos.tex', 'src/glos.tex');
+      this.copy('src/glos.tex', 'src/glos.tex');
     }
   },
 
   projectfiles: function () {
-    this.template('package.json', 'package.json');
+    this.copy('package.json', 'package.json');
     this.copy('editorconfig', '.editorconfig');
   },
 
   _createFirstChapter: function () {
-    this.invoke('latex:chapter', {
+    this.composeWith('latex:chapter', {
       options: {
         chapterNum: '1',
         chapterName: 'First Chapter'
