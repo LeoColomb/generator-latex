@@ -24,11 +24,11 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.17.0",
+    "yeoman-generator": "^0.22.6",
     "yosay": "^1.0.0"
   },
   "devDependencies": {
-    "fs-extra": "^0.11.0",
+    "fs-extra": "^0.28.0",
     "mocha": "*"
   },
   "peerDependencies": {
