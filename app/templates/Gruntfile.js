@@ -21,15 +21,14 @@ module.exports = function (grunt) {
           engine: 'bibtex',
           interaction: false
         }
-      }<% } %><% if (gloss) { %>,
-      gloss: {
-        src: 'dist/<%= projectName %>.aux',
-        options: {
-          engine: 'makeglossaries',
-          interaction: false
-        }
       }<% } %>
     },
+    <% if (gloss) { %>,
+    shell: {
+      glossary: {
+        command: 'makeglossaries -d ./dist <%= projectName %>'
+      }
+    },<% } %>
     connect: {
       server: {
         options: {
@@ -42,7 +41,7 @@ module.exports = function (grunt) {
     watch: {
       latex: {
         files: '**/*.tex',
-        tasks: ['latex', 'latex:pdf']
+        tasks: ['latex', 'shell:glossary', 'latex:pdf']
       },<% if (bib) { %>
       bibtex: {
         files: '**/*.bib',
@@ -61,6 +60,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-latex');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task
   grunt.registerTask('default', ['connect', 'watch']);
