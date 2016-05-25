@@ -108,8 +108,17 @@ The title of this chapter will be `Introduction`.
 
 It also adds to `./main.tex`, inserting an `\include` just before it sees `% End of chapter files listing`.
 
-## 
+### Regarding glossary
 
+In order for the glossary generation to work, you need to ensure the `makeglossaries` command is available system-wide.
+
+A quick way to check if the command is available is to invoke it from any terminal.
+
+```
+makeglossaries
+```
+
+On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the PATH, otherwise the command will not be available.
 
 ## License
 

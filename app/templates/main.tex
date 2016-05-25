@@ -28,7 +28,7 @@
 <% if (gloss) { %>
 % Glossary
 \usepackage[nomain,acronym,xindy,toc]{glossaries}
-\loadglsentries[main]{../src/glos}
+\loadglsentries{./src/glos}
 \makeglossaries
 \usepackage{makeidx}
 \makeindex
@@ -50,7 +50,7 @@
 \printindex
 % Glossary
 \setglossarystyle{altlist}
-\printglossary
+\printglossaries
 <% } %>
 
 \end{document}
