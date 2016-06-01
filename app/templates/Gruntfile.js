@@ -23,20 +23,16 @@ module.exports = function (grunt) {
         }
       }<% } %>
     },
-    shell: {
-      <% if (gloss) { %>
+    shell: {<% if (gloss) { %>
       glossary: {
         command: 'makeglossaries -d ./dist <%= projectName %>'
-      },
-      <% } %>
-      <% if (figs) { %>
-        figs: {
-          command: function() {
-            return 'inkscape --file="' + grunt.config('shell.figs.src') + '" --export-pdf="' + grunt.config('shell.figs.src').replace('.svg', '.pdf') + '"';
-          },
-          src: '**/*.svg'
-        }
-      <% } %>
+      },<% } %> <% if (figs) { %>
+      figs: {
+        command: function() {
+          return 'inkscape --file="' + grunt.config('shell.figs.src') + '" --export-pdf="' + grunt.config('shell.figs.src').replace('.svg', '.pdf') + '"';
+        },
+        src: '**/*.svg'
+      }, <% } %>
     },
     connect: {
       server: {
@@ -56,17 +52,14 @@ module.exports = function (grunt) {
       bibtex: {
         files: '**/*.bib',
         tasks: ['latex:bib', 'latex:pdf']
-      },
-      <% } %>
-      <% if (figs) { %>
+      }, <% } %> <% if (figs) { %>
       svgs: {
         files: '**/*.svg',
         tasks: ['shell:figs'],
         options: {
           spawn: false
         }
-      },
-      <% } %>
+      }, <% } %>
       livereload: {
         options: {
           livereload: true
@@ -81,7 +74,7 @@ module.exports = function (grunt) {
     grunt.config('shell.figs.src', filepath);
   });
   <% } %>
-  
+
   // These plugins provide necessary tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
