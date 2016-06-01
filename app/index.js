@@ -101,6 +101,12 @@ module.exports = require('yeoman-generator').Base.extend({
       name: 'gloss',
       message: 'Do you need a glossary?',
       default: false
+    },
+    {
+      type: 'confirm',
+      name: 'figs',
+      message: 'Do you need to generate .pdf figures from .svg automatically?',
+      default: false
     }];
 
     this.prompt(prompts, function (props) {
@@ -115,7 +121,8 @@ module.exports = require('yeoman-generator').Base.extend({
       this.language = props.language;
       this.bib = props.bib;
       this.gloss = props.gloss;
-
+      this.figs = props.figs;
+      
       done();
     }.bind(this));
   },
