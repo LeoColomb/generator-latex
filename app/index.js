@@ -122,7 +122,7 @@ module.exports = require('yeoman-generator').Base.extend({
       this.bib = props.bib;
       this.gloss = props.gloss;
       this.figs = props.figs;
-      
+
       done();
     }.bind(this));
   },
@@ -136,6 +136,10 @@ module.exports = require('yeoman-generator').Base.extend({
     }
     if (this.gloss) {
       this.copy('src/glos.tex', 'src/glos.tex');
+    }
+    if (this.figs) {
+      this.copy('src/foobar.svg', 'src/foobar.svg');
+      this.copy('figs.js', 'figs.js');
     }
   },
 
