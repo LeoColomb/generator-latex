@@ -118,7 +118,23 @@ A quick way to check if the command is available is to invoke it from any termin
 makeglossaries
 ```
 
-On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the PATH, otherwise the command will not be available.
+On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the `PATH`, otherwise the command will not be available.
+
+### Regarding graphics
+
+Figures in `svg` format can be automatically converted to `pdf` upon changes.
+This provides a robust and easy way to import vector graphics in latex.
+
+A specific grunt task can be run to refresh all figures, although the `grunt` command will start by regenerating all figures.
+
+```
+grunt execute:figs
+```
+
+### Regarding bibliography
+
+When the bibliography is modified, it is properly reflected in the document **two** refresh later. This is due to how latex and bibtex interact.
+If you see some undefined references (displayed as `[??]`), simply let grunt perform a second refresh by modifying and saving any `.tex` file.
 
 ## License
 
