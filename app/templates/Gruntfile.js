@@ -52,8 +52,7 @@ module.exports = function (grunt) {
       latex: {
         files: '**/*.tex',
         tasks: ['latex', 'shell:glossary', 'latex:pdf']
-      },
-      <% if (bib) { %>
+      },<% if (bib) { %>
       bibtex: {
         files: '**/*.bib',
         tasks: ['latex:bib', 'latex:pdf']
