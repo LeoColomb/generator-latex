@@ -2,5 +2,18 @@
 
 Write <%= chapterName %> here.
 Example of a glossary entry for the word \gls{computer}.
-Example of an acronym entry with a latin saying \gls{qed}. Notice how it is
-shorten the second time, \gls{qed}.
+
+Example of an acronym entry with a latin saying: \gls{qed}. Notice how it is
+shorten the second time: \gls{qed}.
+
+Figure \ref{figure_example} gives an example of an svg graphic converted automatically to .pdf and
+imported in latex.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/foobar.pdf}
+  \caption{Figure example of an imported pdf generated from an svg file (drawn with inkscape)}
+  \label{figure_example}
+\end{figure}
+
+Example of a bibliography reference \cite{Perrin}.
