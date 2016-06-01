@@ -34,6 +34,11 @@ module.exports = function (grunt) {
         src: '**/*.svg'
       }, <% } %>
     },
+    execute: {<% if (figs) { %>
+  		figs: {
+  			src: ['figs.js']
+  		} <% } %>
+  	},
     connect: {
       server: {
         options: {
@@ -80,6 +85,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-latex');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-execute');
 
   // Default task
   grunt.registerTask('default', ['connect', 'watch']);
