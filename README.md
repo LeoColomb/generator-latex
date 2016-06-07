@@ -120,6 +120,10 @@ makeglossaries
 
 On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the `PATH`, otherwise the command will not be available.
 
+```
+\gls{computer}
+```
+
 ### Regarding graphics
 
 Figures in `svg` format can be automatically converted to `pdf` upon changes.
@@ -131,10 +135,25 @@ A specific grunt task can be run to refresh all figures, although the `grunt` co
 grunt execute:figs
 ```
 
+Latex code sample to insert a `.pdf` graphic generated from `.svg`:
+
+```
+\begin{figure}[h]
+  \centering
+  \includegraphics{src/foobar.pdf}
+  \caption{Figure example of an imported pdf generated from an svg file (drawn with inkscape)}
+  \label{figure_example}
+\end{figure}
+```
+
 ### Regarding bibliography
 
 When the bibliography is modified, it is properly reflected in the document **two** refresh later. This is due to how latex and bibtex interact.
 If you see some undefined references (displayed as `[??]`), simply let grunt perform a second refresh by modifying and saving any `.tex` file.
+
+```
+\cite{Perrin}.
+```
 
 ## License
 
