@@ -120,6 +120,7 @@ makeglossaries
 
 On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the `PATH`, otherwise the command will not be available.
 
+Latex code sample to insert a glossary entry:
 ```
 \gls{computer}
 ```
@@ -151,6 +152,7 @@ Latex code sample to insert a `.pdf` graphic generated from `.svg`:
 When the bibliography is modified, it is properly reflected in the document **two** refresh later. This is due to how latex and bibtex interact.
 If you see some undefined references (displayed as `[??]`), simply let grunt perform a second refresh by modifying and saving any `.tex` file.
 
+Latex code sample to insert a reference:
 ```
 \cite{Perrin}.
 ```
