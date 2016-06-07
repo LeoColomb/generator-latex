@@ -23,12 +23,22 @@ module.exports = function (grunt) {
         }
       }<% } %>
     },
-    <% if (gloss) { %>
-    shell: {
+    shell: {<% if (gloss) { %>
       glossary: {
         command: 'makeglossaries -d ./dist <%= projectName %>'
-      }
-    },<% } %>
+      },<% } %> <% if (figs) { %>
+      figs: {
+        command: function() {
+          return 'inkscape --file="' + grunt.config('shell.figs.src') + '" --export-pdf="' + grunt.config('shell.figs.src').replace('.svg', '.pdf') + '"';
+        },
+        src: '**/*.svg'
+      }, <% } %>
+    },
+    execute: {<% if (figs) { %>
+  		figs: {
+  			src: ['figs.js']
+  		} <% } %>
+  	},
     connect: {
       server: {
         options: {
@@ -46,7 +56,14 @@ module.exports = function (grunt) {
       bibtex: {
         files: '**/*.bib',
         tasks: ['latex:bib', 'latex:pdf']
-      },<% } %>
+      }, <% } %> <% if (figs) { %>
+      svgs: {
+        files: '**/*.svg',
+        tasks: ['shell:figs'],
+        options: {
+          spawn: false
+        }
+      }, <% } %>
       livereload: {
         options: {
           livereload: true
@@ -56,12 +73,19 @@ module.exports = function (grunt) {
     }
   });
 
+  <% if (figs) { %>
+  grunt.event.on('watch', function(action, filepath) {
+    grunt.config('shell.figs.src', filepath);
+  });
+  <% } %>
+
   // These plugins provide necessary tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-latex');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-execute');
 
   // Default task
-  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('default', [<% if (figs) { %>'execute:figs', <% } %>'connect', 'watch']);
 };
