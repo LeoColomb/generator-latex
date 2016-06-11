@@ -40,6 +40,10 @@ Take a look at this final structure:
         │- main.tex    # Second chapter global file
         │- ...
 
+    └── assets
+        │- figures.svg # Optionnal figures files
+        │- ...
+
     └── ...
 
 └── dist
@@ -141,7 +145,7 @@ Latex code sample to insert a `.pdf` graphic generated from `.svg`:
 ```
 \begin{figure}[h]
   \centering
-  \includegraphics{src/foobar.pdf}
+  \includegraphics{src/assets/figure.pdf}
   \caption{Figure example of an imported pdf generated from an svg file (drawn with inkscape)}
   \label{figure_example}
 \end{figure}

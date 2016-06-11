@@ -138,7 +138,7 @@ module.exports = require('yeoman-generator').Base.extend({
       this.copy('src/glos.tex', 'src/glos.tex');
     }
     if (this.figs) {
-      this.copy('src/foobar.svg', 'src/foobar.svg');
+      this.copy('src/figure.svg', 'src/assets/figure.svg');
       this.copy('figs.js', 'figs.js');
     }
   },
