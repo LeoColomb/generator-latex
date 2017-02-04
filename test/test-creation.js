@@ -28,7 +28,8 @@ describe('creates expected project', function () {
       'src/refs.bib',
       'Gruntfile.js',
       '.editorconfig',
-      'figs.js'
+      'figs.js',
+      'src/1/main.tex'
     ]);
     assert.noFile('src/glos.bib');
   });
@@ -36,6 +37,7 @@ describe('creates expected project', function () {
   it('templates', function () {
     assert.fileContent('main.tex', /\%\sTest LaTeX/);
     assert.fileContent('package.json', /"name"\:\s"test-la-te-x"/);
+    assert.fileContent('src/1/main.tex', /\\chapter{First Chapter}/);
   });
 });
 

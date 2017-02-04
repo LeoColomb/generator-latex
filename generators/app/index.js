@@ -22,10 +22,6 @@ const languages = [
 ];
 
 module.exports = class extends Generator {
-  initializing() {
-    this.pkg = require('../../package.json');
-  };
-
   prompting() {
     let extensionName = require('lodash').kebabCase(this.appname);
 
@@ -167,9 +163,9 @@ module.exports = class extends Generator {
   };
 
   end() {
-    /*this.composeWith(require.resolve('../chapter'), {
+    this.composeWith(require.resolve('../chapter'), {
       chapterNum: '1',
       chapterName: 'First Chapter'
-    });*/
+    });
   };
 }
