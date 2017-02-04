@@ -1,10 +1,12 @@
 'use strict';
-var yosay = require('yosay');
-var mkdirp = require('mkdirp');
-var docClasses = [
+const Generator = require('yeoman-generator');
+const mkdirp = require('mkdirp');
+const yosay = require('yosay');
+
+const docClasses = [
   'report', 'article', 'book', 'slides', 'beamer', 'lettre', 'memoir'
 ];
-var languages = [
+const languages = [
   'english', 'afrikaans', 'ancientgreek', 'arabic', 'armenian', 'assamese',
   'basque', 'bengali', 'bokmal', 'bulgarian', 'catalan', 'coptic', 'croatian',
   'czech', 'danish', 'dutch', 'esperanto', 'estonian', 'farsi', 'finnish',
@@ -19,26 +21,18 @@ var languages = [
   'usenglishmax', 'welsh'
 ];
 
-module.exports = require('yeoman-generator').Base.extend({
-  init: function () {
-    this.pkg = require('../package.json');
+module.exports = class extends Generator {
+  initializing() {
+    this.pkg = require('../../package.json');
+  };
 
-    this.on('end', function () {
-      this._createFirstChapter();
-      if (!this.options['skip-install']) {
-        this.npmInstall();
-      }
-    });
-  },
-
-  askFor: function () {
-    var done = this.async();
-    var extensionName = require('lodash').kebabCase(this.appname);
+  prompting() {
+    let extensionName = require('lodash').kebabCase(this.appname);
 
     // Have Yeoman greet the user.
     this.log(yosay('Welcome to the marvelous Latex generator!'));
 
-    var prompts = [{
+    let prompts = [{
       name: 'projectName',
       message: 'Project Name',
       default: extensionName,
@@ -109,51 +103,73 @@ module.exports = require('yeoman-generator').Base.extend({
       default: false
     }];
 
-    this.prompt(prompts, function (props) {
-      this.projectName = props.projectName;
-      this.projectNameSlug = require('lodash').kebabCase(props.projectName);
-      this.projectDesc = props.projectDesc;
-      this.version = props.version;
-      this.projectUrl = props.projectUrl;
-      this.license = props.license;
-      this.authorName = props.authorName;
-      this.docClass = props.docClass;
-      this.language = props.language;
-      this.bib = props.bib;
-      this.gloss = props.gloss;
-      this.figs = props.figs;
-
-      done();
+    return this.prompt(prompts).then(function (props) {
+      // To access props later use this.props.someAnswer;
+      this.props = props;
+      this.props.projectNameSlug = require('lodash').kebabCase(props.projectName);
     }.bind(this));
-  },
+  };
 
-  app: function () {
+  configuring() {
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json'),
+      this.props
+    );
+    this.fs.copy(
+      this.templatePath('editorconfig'),
+      this.destinationPath('.editorconfig')
+    );
+  };
+
+  writing() {
     mkdirp('dist/');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
-    this.copy('main.tex', 'main.tex');
-    if (this.bib) {
-      this.copy('src/refs.bib', 'src/refs.bib');
-    }
-    if (this.gloss) {
-      this.copy('src/glos.tex', 'src/glos.tex');
-    }
-    if (this.figs) {
-      this.copy('src/figure.svg', 'src/assets/figure.svg');
-      this.copy('figs.js', 'figs.js');
-    }
-  },
 
-  projectfiles: function () {
-    this.copy('package.json', 'package.json');
-    this.copy('editorconfig', '.editorconfig');
-  },
+    this.fs.copyTpl(
+      this.templatePath('Gruntfile.js'),
+      this.destinationPath('Gruntfile.js'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('main.tex'),
+      this.destinationPath('main.tex'),
+      this.props
+    );
 
-  _createFirstChapter: function () {
-    this.composeWith('latex:chapter', {
-      options: {
-        chapterNum: '1',
-        chapterName: 'First Chapter'
-      }
-    });
-  }
-});
+    if (this.props.bib) {
+      this.fs.copyTpl(
+        this.templatePath('src/refs.bib'),
+        this.destinationPath('src/refs.bib'),
+        this.props
+      );
+    }
+    if (this.props.gloss) {
+      this.fs.copyTpl(
+        this.templatePath('src/gloss.tex'),
+        this.destinationPath('src/gloss.tex'),
+        this.props
+      );
+    }
+    if (this.props.figs) {
+      this.fs.copy(
+        this.templatePath('src/figure.svg'),
+        this.destinationPath('src/assets/figure.svg')
+      );
+      this.fs.copy(
+        this.templatePath('figs.js'),
+        this.destinationPath('figs.js')
+      );
+    }
+  };
+
+  install() {
+    this.installDependencies();
+  };
+
+  end() {
+    /*this.composeWith(require.resolve('../chapter'), {
+      chapterNum: '1',
+      chapterName: 'First Chapter'
+    });*/
+  };
+}

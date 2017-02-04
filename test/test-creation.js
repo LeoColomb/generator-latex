@@ -1,65 +1,85 @@
 /*global describe, before, it*/
 'use strict';
-var path = require('path');
-var helpers = require('yeoman-test');
-var assert = require('yeoman-assert');
-var deps = [
+const path = require('path');
+const helpers = require('yeoman-test');
+const assert = require('yeoman-assert');
+const deps = [
   [helpers.createDummyGenerator(), 'latex:chapter']
 ];
 
-describe('creates expected files', function () {
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../app'))
-      .inDir(path.join(__dirname, './temp'))
-      .withOptions({ 'skip-install': true })
+describe('creates expected project', function () {
+  beforeEach(function () {
+    return helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
-        'name': 'Test LaTeX',
-        'class': 'book',
+        'projectName': 'Test LaTeX',
+        'docClass': 'book',
         'language': 'french',
-        'bib': true
+        'bib': true,
+        'figs': true
       })
       .withGenerators(deps)
-      .on('end', done);
+      .toPromise();
   });
 
-  it('latex generator', function (done) {
+  it('files', function () {
     assert.file([
       'package.json',
       'main.tex',
       'src/refs.bib',
       'Gruntfile.js',
-      '.editorconfig'
+      '.editorconfig',
+      'figs.js'
     ]);
     assert.noFile('src/glos.bib');
-    done();
   });
 
-  // Don't work, don't know why...
-  //it('latex:chapter generator', function (done) {
-  //  assert.file('src/1/main.tex');
-  //  assert.fileContent('main.tex', /\\input{src\/1\/main\.tex}/);
-  //  assert.fileContent('src/1/main.tex', /\\chapter{First Chapter}/);
-  //  done();
-  //});
+  it('templates', function () {
+    assert.fileContent('main.tex', /\%\sTest LaTeX/);
+    assert.fileContent('package.json', /"name"\:\s"test-la-te-x"/);
+  });
 });
 
-describe('creates a chapter', function () {
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../chapter'))
-      .inDir(path.join(__dirname, './temp'), function (dir) {
-        require('fs-extra').copySync(path.join(__dirname, '../app/templates'), dir);
-      })
-      .withPrompts({
-        'chapterName': 'Test LaTex Chapter',
-        'chapterNum': '2'
-      })
-      .on('end', done);
+describe('adds a chapter', function () {
+  describe('with prompts', function () {
+    beforeEach(function () {
+      return helpers.run(path.join(__dirname, '../generators/chapter'))
+        .inTmpDir(function (dir) {
+          require('fs-extra').copySync(path.join(__dirname, '../generators/app/templates'), dir);
+        })
+        .withPrompts({
+          'chapterName': 'Test LaTex Chapter',
+          'chapterNum': '2'
+        })
+        .toPromise();
+    });
+
+    it('files', function () {
+      assert.file('src/2/main.tex');
+    });
+
+    it('templates', function () {
+      assert.fileContent('main.tex', /\\input{src\/2\/main\.tex}/);
+      assert.fileContent('src/2/main.tex', /\\chapter{Test LaTex Chapter}/);
+    });
   });
 
-  it('latex:chapter generator', function (done) {
-    assert.file('src/2/main.tex');
-    assert.fileContent('main.tex', /\\input{src\/2\/main\.tex}/);
-    assert.fileContent('src/2/main.tex', /\\chapter{Test LaTex Chapter}/);
-    done();
+  describe('with args', function () {
+    beforeEach(function () {
+      return helpers.run(path.join(__dirname, '../generators/chapter'))
+        .inTmpDir(function (dir) {
+          require('fs-extra').copySync(path.join(__dirname, '../generators/app/templates'), dir);
+        })
+        .withArguments([8, 'Test Old Chapter'])
+        .toPromise();
+    });
+
+    it('files', function () {
+      assert.file('src/8/main.tex');
+    });
+
+    it('templates', function () {
+      assert.fileContent('main.tex', /\\input{src\/8\/main\.tex}/);
+      assert.fileContent('src/8/main.tex', /\\chapter{Test Old Chapter}/);
+    });
   });
 });

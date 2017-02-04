@@ -1,0 +1,16 @@
+{
+  "name": "<%= projectNameSlug %>",
+  "description": "<%= projectDesc %>",
+  "version": "<%= version %>",
+  "private": true,
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-execute": "^0.2.2",
+    "grunt-latex": "^1.0.0",
+    "grunt-shell": "^2.1.0",
+    "glob": "^7.1.1",
+    "shelljs": "^0.7.1"
+  }
+}
