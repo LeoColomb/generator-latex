@@ -88,7 +88,7 @@ module.exports = class extends Generator {
     },
     {
       type: 'confirm',
-      name: 'gloss',
+      name: 'glossary',
       message: 'Do you need a glossary?',
       default: false
     },
@@ -134,15 +134,15 @@ module.exports = class extends Generator {
 
     if (this.props.bib) {
       this.fs.copyTpl(
-        this.templatePath('src/refs.bib'),
-        this.destinationPath('src/refs.bib'),
+        this.templatePath('src/references.bib'),
+        this.destinationPath('src/references.bib'),
         this.props
       );
     }
-    if (this.props.gloss) {
+    if (this.props.glossary) {
       this.fs.copyTpl(
-        this.templatePath('src/gloss.tex'),
-        this.destinationPath('src/gloss.tex'),
+        this.templatePath('src/glossary.tex'),
+        this.destinationPath('src/glossary.tex'),
         this.props
       );
     }

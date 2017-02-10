@@ -25,10 +25,10 @@
 \usepackage{listings} % Code
 \usepackage{color}    % Highlight
 
-<% if (gloss) { %>
+<% if (glossary) { %>
 % Glossary
 \usepackage[nomain,acronym,xindy,toc]{glossaries}
-\loadglsentries{./src/glos}
+\loadglsentries{./src/glossary}
 \makeglossaries
 \usepackage{makeidx}
 \makeindex
@@ -45,8 +45,8 @@
 <% if (bib) { %>
 % Bibliography
 \bibliographystyle{unsrt}
-\bibliography{../src/refs}
-<% } %><% if (gloss) { %>
+\bibliography{../src/references}
+<% } %><% if (glossary) { %>
 \printindex
 % Glossary
 \setglossarystyle{altlist}

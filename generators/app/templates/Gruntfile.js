@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         }
       }<% } %>
     },
-    shell: {<% if (gloss) { %>
+    shell: {<% if (glossary) { %>
       glossary: {
         command: 'makeglossaries -d ./dist <%= projectName %>'
       },<% } %> <% if (figs) { %>

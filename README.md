@@ -28,8 +28,8 @@ Take a look at this final structure:
 │- package.json
 │
 └── src
-    │- glos.tex        # The glossary file
-    │- refs.bib        # The reference file
+    │- glossary.tex        # The glossary file
+    │- references.bib        # The reference file
     │- ...
     │
     └── 1

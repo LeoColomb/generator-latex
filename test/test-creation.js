@@ -25,13 +25,13 @@ describe('creates expected project', function () {
     assert.file([
       'package.json',
       'main.tex',
-      'src/refs.bib',
+      'src/references.bib',
       'Gruntfile.js',
       '.editorconfig',
       'figs.js',
       'src/1/main.tex'
     ]);
-    assert.noFile('src/glos.bib');
+    assert.noFile('src/glossary.bib');
   });
 
   it('templates', function () {
