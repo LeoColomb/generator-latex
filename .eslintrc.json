@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "global-require": 0,
+    "no-useless-escape": 0,
+    "no-console": 0
+  }
+}

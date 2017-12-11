@@ -1,15 +1,15 @@
-/*global describe, it*/
-'use strict';
-var assert = require('yeoman-assert');
+/* eslint-env mocha */
 
-describe('can be imported without blowing up', function () {
-  it('latex', function () {
-    var app = require('../generators/app');
+const assert = require('yeoman-assert');
+
+describe('can be imported without blowing up', () => {
+  it('latex', () => {
+    const app = require('../generators/app');
     assert(app !== undefined);
   });
 
-  it('latex:chapter', function () {
-    var app = require('../generators/chapter');
+  it('latex:chapter', () => {
+    const app = require('../generators/chapter');
     assert(app !== undefined);
   });
 });
