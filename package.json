@@ -14,7 +14,9 @@
     "node": ">= 8"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "npm run test:lint && npm run test:feat",
+    "test:feat": "mocha",
+    "test:lint": "eslint ."
   },
   "files": [
     "generators"
