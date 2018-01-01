@@ -5,7 +5,8 @@
 > Yeoman Generator for LaTeX up-to-date documents Edit
 
 [![Build Status](https://travis-ci.org/LeoColomb/generator-latex.svg?branch=master)](https://travis-ci.org/LeoColomb/generator-latex)
-[![Latest Release](https://img.shields.io/npm/v/generator-latex.svg?style=flat)](https://www.npmjs.org/package/generator-latex)[![Yeoman](https://img.shields.io/badge/generator-yeoman-5aadbb.svg?style=flat)](http://yeoman.io)
+[![Latest Release](https://img.shields.io/npm/v/generator-latex.svg?style=flat)](https://www.npmjs.org/package/generator-latex)
+[![Yeoman](https://img.shields.io/badge/generator-yeoman-5aadbb.svg?style=flat)](http://yeoman.io)
 
 ## Why
 
@@ -16,7 +17,7 @@
 
 After generation, keeping your work up-to-date during your writting require only one command:
 
-```bash
+```shell
 $ grunt
 ```
 
@@ -28,7 +29,7 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 
 To install `generator-latex` from [npm](https://www.npmjs.org/), run:
 
-```bash
+```shell
 $ npm install -g generator-latex
 ```
 
@@ -36,7 +37,7 @@ $ npm install -g generator-latex
 
 ### New project
 
-```bash
+```shell
 $ yo latex
 ```
 
@@ -45,13 +46,13 @@ $ yo latex
 Adding a chapter is a repetitive task. To keep them organized, the Chapter Sub-Generator creates a chapters directory, and lets you create sub-directories for each chapter.
 
 To run it:
-```bash
+```shell
 $ yo latex:chapter
 ```
 
 or directly to bypass questions:
 
-```bash
+```shell
 $ yo latex:chapter 1 Introduction
 ```
 
@@ -73,7 +74,7 @@ It helps you to create a solid structure of your project.
 
 Take a look at this final structure:
 
-```
+```shell
 project/
 ├── Gruntfile.js            # → The compilator tasks file
 ├── main.tex                # → The project-root file
@@ -109,14 +110,14 @@ In order for the glossary generation to work, you need to ensure the `makeglossa
 
 A quick way to check if the command is available is to invoke it from any terminal.
 
-```
-makeglossaries
+```shell
+$ makeglossaries
 ```
 
 On Windows, it is mandatory to add the folder `C:\\...\MiKteX X.X\miktex\bin` to the `PATH`, otherwise the command will not be available.
 
 Latex code sample to insert a glossary entry:
-```
+```latex
 \gls{computer}
 ```
 
@@ -127,13 +128,13 @@ This provides a robust and easy way to import vector graphics in latex.
 
 A specific grunt task can be run to refresh all figures, although the `grunt` command will start by regenerating all figures.
 
-```
-grunt execute:figs
+```shell
+$ grunt execute:figs
 ```
 
 Latex code sample to insert a `.pdf` graphic generated from `.svg`:
 
-```
+```latex
 \begin{figure}[h]
   \centering
   \includegraphics{src/assets/figure.pdf}
@@ -148,7 +149,7 @@ When the bibliography is modified, it is properly reflected in the document **tw
 If you see some undefined references (displayed as `[??]`), simply let grunt perform a second refresh by modifying and saving any `.tex` file.
 
 Latex code sample to insert a reference:
-```
+```latex
 \cite{Perrin}.
 ```
 
