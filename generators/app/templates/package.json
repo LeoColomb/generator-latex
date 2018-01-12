@@ -11,6 +11,6 @@
     "grunt-latex": "^1.0.0",
     "grunt-shell": "^2.1.0",
     "glob": "^7.1.1",
-    "shelljs": "^0.7.1"
+    "shelljs": "^0.8.0"
   }
 }
