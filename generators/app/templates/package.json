@@ -4,7 +4,7 @@
   "version": "<%= version %>",
   "private": true,
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-execute": "^0.2.2",
