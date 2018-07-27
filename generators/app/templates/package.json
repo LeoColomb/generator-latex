@@ -10,7 +10,7 @@
     "grunt-execute": "^0.2.2",
     "grunt-latex": "^1.0.0",
     "grunt-shell": "^2.1.0",
-    "glob": "^7.1.1",
+    "glob": "^7.1.2",
     "shelljs": "^0.8.2"
   }
 }
