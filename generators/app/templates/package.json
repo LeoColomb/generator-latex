@@ -6,7 +6,7 @@
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-connect": "^2.0.0",
     "grunt-execute": "^0.2.2",
     "grunt-latex": "^1.0.0",
     "grunt-shell": "^2.1.0",
