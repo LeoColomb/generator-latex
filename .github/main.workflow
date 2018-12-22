@@ -3,6 +3,11 @@ workflow "Build and Test" {
   resolves = ["Test"]
 }
 
+workflow "Build, Test and Publish" {
+  on = "release"
+  resolves = ["Publish"]
+}
+
 action "Build" {
   uses = "actions/npm@master"
   args = "install"
@@ -12,11 +17,6 @@ action "Test" {
   needs = "Build"
   uses = "actions/npm@master"
   args = "test"
-}
-
-workflow "Build, Test adn Publish" {
-  on = "release"
-  resolves = ["Publish"]
 }
 
 action "Publish" {
