@@ -37,7 +37,7 @@
     "eslint": "^5.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.8.0",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^8.0.0",
     "mocha": "*",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^2.0.0"
