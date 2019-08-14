@@ -4,7 +4,7 @@
 
 > Yeoman Generator for LaTeX up-to-date documents Edit
 
-[![Build Status](https://travis-ci.org/LeoColomb/generator-latex.svg?branch=master)](https://travis-ci.org/LeoColomb/generator-latex)
+[![Build Status](https://action-badges.now.sh/LeoColomb/generator-latex.svg)](https://github.com/LeoColomb/generator-latex/actions)
 [![Latest Release](https://img.shields.io/npm/v/generator-latex.svg?style=flat)](https://www.npmjs.org/package/generator-latex)
 [![Yeoman](https://img.shields.io/badge/generator-yeoman-5aadbb.svg?style=flat)](http://yeoman.io)
 
