@@ -1,5 +1,0 @@
-language: node_js
-node_js: node
-before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-latex' ]; then cd .. && eval "mv $currentfolder generator-latex" && cd generator-latex; fi
