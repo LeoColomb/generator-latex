@@ -1,4 +1,3 @@
-
 const Generator = require('yeoman-generator');
 const mkdirp = require('mkdirp');
 const yosay = require('yosay');
