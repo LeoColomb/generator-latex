@@ -12,6 +12,8 @@ describe('creates expected project', () => {
   beforeEach(() => helpers.run(path.join(__dirname, '../generators/app'))
     .withPrompts({
       projectName: 'Test LaTeX',
+      projectUrl: 'https://example.com',
+      authorName: 'Bot',
       docClass: 'book',
       language: 'french',
       bib: true,
@@ -30,7 +32,7 @@ describe('creates expected project', () => {
       'figs.js',
       'src/1/main.tex',
     ]);
-    assert.noFile('src/glossary.bib');
+    assert.noFile('src/glossary.tex');
   });
 
   it('templates', () => {
