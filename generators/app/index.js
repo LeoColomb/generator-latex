@@ -131,6 +131,7 @@ module.exports = class extends Generator {
       this.props,
     );
 
+    mkdirp('src');
     if (this.props.bib) {
       this.fs.copyTpl(
         this.templatePath('src/references.bib'),
@@ -155,10 +156,6 @@ module.exports = class extends Generator {
         this.destinationPath('figs.js'),
       );
     }
-  }
-
-  install() {
-    this.installDependencies();
   }
 
   end() {
