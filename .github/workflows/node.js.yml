@@ -19,9 +19,10 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 15
+          cache: 'npm'
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint --if-present
