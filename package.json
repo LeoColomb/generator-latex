@@ -33,7 +33,7 @@
     "yosay": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.2.0",
+    "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.8.0",
     "fs-extra": "^10.0.0",
