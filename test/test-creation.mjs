@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import { copyFileSync } from 'fs'
+import { cpSync } from 'fs'
 import helpers from 'yeoman-test';
 
 const deps = [
@@ -10,7 +10,8 @@ const deps = [
 describe('creates expected project', () => {
   let runResult;
   beforeEach(async () => {
-    runResult = helpers.create('../generators/app')
+    runResult = await helpers
+      .create('../generators/app')
       .withPrompts({
         projectName: 'Test LaTeX',
         projectUrl: 'https://example.com',
@@ -21,7 +22,7 @@ describe('creates expected project', () => {
         figs: true,
       })
       .withGenerators(deps)
-    .run()
+      .run()
   });
 
   it('files', () => {
@@ -48,9 +49,10 @@ describe('adds a chapter', () => {
   describe('with prompts', () => {
     let runResult;
     beforeEach(async () => { 
-      runResult = helpers.create('../generators/chapter')
+      runResult = await helpers
+        .create('../generators/chapter')
         .inTmpDir((dir) => {
-          copyFileSync(new URL('../generators/app/templates', import.meta.url), dir);
+          cpSync(new URL('../generators/app/templates', import.meta.url), dir);
         })
         .withPrompts({
           chapterName: 'Test LaTex Chapter',
@@ -72,9 +74,10 @@ describe('adds a chapter', () => {
   describe('with args', () => {
     let runResult;
     beforeEach(async () => {
-      runResult = helpers.create('../generators/chapter')
+      runResult = await helpers
+        .create('../generators/chapter')
         .inTmpDir((dir) => {
-          copyFileSync(new URL('../generators/app/templates', import.meta.url), dir);
+          cpSync(new URL('../generators/app/templates', import.meta.url), dir);
         })
         .withArguments([8, 'Test Old Chapter'])
         .run()
