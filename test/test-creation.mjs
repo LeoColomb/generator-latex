@@ -24,12 +24,6 @@ describe('creates expected project', () => {
     .run()
   });
 
-  afterEach(() => {
-    if (runResult) {
-      runResult.restore();
-    }
-  });
-
   it('files', () => {
     runResult.assertFile([
       'package.json',
@@ -56,19 +50,13 @@ describe('adds a chapter', () => {
     beforeEach(async () => { 
       runResult = helpers.create('../generators/chapter')
         .inTmpDir((dir) => {
-          copyFileSync('../generators/app/templates', dir);
+          copyFileSync(new URL('../generators/app/templates', import.meta.url), dir);
         })
         .withPrompts({
           chapterName: 'Test LaTex Chapter',
           chapterNum: '2',
         })
         .run()
-    });
-
-    afterEach(() => {
-      if (runResult) {
-        runResult.restore();
-      }
     });
 
     it('files', () => {
@@ -86,7 +74,7 @@ describe('adds a chapter', () => {
     beforeEach(async () => {
       runResult = helpers.create('../generators/chapter')
         .inTmpDir((dir) => {
-          copyFileSync('../generators/app/templates', dir);
+          copyFileSync(new URL('../generators/app/templates', import.meta.url), dir);
         })
         .withArguments([8, 'Test Old Chapter'])
         .run()
