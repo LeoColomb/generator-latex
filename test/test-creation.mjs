@@ -84,7 +84,7 @@ describe('adds a chapter', () => {
   describe('with args', () => {
     let runResult;
     beforeEach(async () => {
-      runResult = helpers.create(__dirname, '../generators/chapter')
+      runResult = helpers.create('../generators/chapter')
         .inTmpDir((dir) => {
           copyFileSync('../generators/app/templates', dir);
         })
