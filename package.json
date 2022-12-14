@@ -39,6 +39,6 @@
     "fs-extra": "^11.1.0",
     "mocha": "*",
     "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^6.0.0"
+    "yeoman-test": "^7.0.0"
   }
 }
