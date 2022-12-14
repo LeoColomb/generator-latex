@@ -1,6 +1,6 @@
 {
   "name": "generator-latex",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Yeoman Generator for LaTeX up-to-date documents",
   "license": "MIT",
   "main": "generators/app/index.js",
